@@ -1,0 +1,116 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    meta.helm.sh/release-name: argocd-apps
+    meta.helm.sh/release-namespace: argocd
+  creationTimestamp: "2023-11-03T15:29:22Z"
+  generation: 42
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: argocd-apps
+  namespace: argocd
+  resourceVersion: "33699"
+  uid: ae12af46-005c-4cf9-b579-f7de6599d3a4
+spec:
+  destination:
+    name: ""
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    directory:
+      jsonnet: {}
+      recurse: true
+    path: dev
+    repoURL: https://github.com/devops893/apps-of-apps.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s
+      limit: 2
+status:
+  health:
+    status: Healthy
+  history:
+  - deployStartedAt: "2023-11-03T15:29:24Z"
+    deployedAt: "2023-11-03T15:29:25Z"
+    id: 0
+    revision: fbc7d926cfe561a2a310938edb83ac0d24265794
+    source:
+      directory:
+        jsonnet: {}
+        recurse: true
+      path: dev
+      repoURL: https://github.com/devops893/apps-of-apps.git
+      targetRevision: HEAD
+  operationState:
+    finishedAt: "2023-11-03T15:46:41Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        automated: true
+      retry:
+        backoff:
+          duration: 5s
+          factor: 2
+          maxDuration: 3m0s
+        limit: 2
+      sync:
+        prune: true
+        resources:
+        - group: argoproj.io
+          kind: Application
+          name: bakai-test
+        revision: fbc7d926cfe561a2a310938edb83ac0d24265794
+    phase: Succeeded
+    startedAt: "2023-11-03T15:46:41Z"
+    syncResult:
+      resources:
+      - group: argoproj.io
+        hookPhase: Running
+        kind: Application
+        message: application.argoproj.io/bakai-test created
+        name: bakai-test
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha1
+      revision: fbc7d926cfe561a2a310938edb83ac0d24265794
+      source:
+        directory:
+          jsonnet: {}
+          recurse: true
+        path: dev
+        repoURL: https://github.com/devops893/apps-of-apps.git
+        targetRevision: HEAD
+  reconciledAt: "2023-11-03T16:15:08Z"
+  resources:
+  - group: argoproj.io
+    kind: Application
+    name: bakai-test
+    namespace: argocd
+    status: Synced
+    version: v1alpha1
+  sourceType: Directory
+  summary: {}
+  sync:
+    comparedTo:
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      source:
+        directory:
+          jsonnet: {}
+          recurse: true
+        path: dev
+        repoURL: https://github.com/devops893/apps-of-apps.git
+        targetRevision: HEAD
+    revision: fbc7d926cfe561a2a310938edb83ac0d24265794
+    status: Synced

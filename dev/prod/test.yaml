@@ -16,4 +16,4 @@ spec:
     helm:
       values: |
         name: bakai-test
-        address: <path:secret/data/some-test/test#test>
+        address: <path:kv-v2/data/argocd#password>
